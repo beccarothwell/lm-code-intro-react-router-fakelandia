@@ -40,6 +40,19 @@ To create your application, run the following command in an empty folder:
 npx create-react-app . --template typescript 
 ```
 
+Note: If you run into problems i.e. 
+
+    "You are running `create-react-app` 4.0.3, which is behind the latest release (5.0.0).
+
+    We no longer support global installation of Create React App."
+
+Try the command 
+
+```
+npx create-react-app@latest {Your project name} --template typescript
+```
+
+
 This will setup a fresh React app for you, with everything for TypeScript already enabled.
 
 Followed by:

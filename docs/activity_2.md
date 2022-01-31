@@ -39,7 +39,7 @@ By default, an `active` class is added to a `<NavLink>` component when it is act
 
 (Optionally you can use the following, more complicated, setup to pass a `styleObject` e.g. `{{ color: red}}`)
 
-```JavaScript
+```TSX
         <NavLink
             to="someRoute"
             style={({ isActive }) =>

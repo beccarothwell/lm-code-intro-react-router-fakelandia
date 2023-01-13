@@ -1,25 +1,23 @@
-export const MISDEMEANOURS = [
-	'rudeness',
-	'vegetables',
-	'lift',
-	'united',
-] as const;
-export type Misdemeanour = typeof MISDEMEANOURS[number];
+import {
+	Misdemeanour,
+	MisdemeanourKind,
+	MISDEMEANOURS,
+} from '../types/misdemeanours.types';
 
-export default async function generateMisdemeanours(
+export async function generateMisdemeanours(
 	number: number
 ): Promise<Array<Misdemeanour>> {
-	// pretend this is an API we're calling, wait 1.5s
-	await sleep(1500);
+	// pretend this is a slow API we're calling, wait 0.25s
+	await sleep(250);
 
 	let amount = number ?? 50;
 
-	const misdemeanours = [];
+	const misdemeanours: Misdemeanour[] = [];
 
 	for (let i = 0; i < amount; i++) {
 		misdemeanours.push({
 			citizenId: Math.floor(i + rand(37) * rand(967)),
-			misdemeanour: choose<Misdemeanour>([...MISDEMEANOURS]),
+			misdemeanour: choose<MisdemeanourKind>([...MISDEMEANOURS]),
 			date: new Date().toLocaleDateString(),
 		});
 	}

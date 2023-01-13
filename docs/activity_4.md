@@ -1,16 +1,16 @@
 # Activity 4 - Extensions & Deployment
 
-There are many, many improvements we could make - even to a small app like this.
+There are many, many improvements we could make - even to a small app like this. If you use it, you'll notice plenty of ways where it's a bit rough around the edges.
 
 Here are some ideas for extensions - feel free to implement your own ideas too!
 
-👉 You may have noticed the 1.5s wait when you call `generateMisdemeanours`. If not, try increasing the sleep(1500) in `generateMisdemeanours` until it becomes annoying when you reload. Can you show a nice "loading" message while the fake API is loading?
+👉 You may have noticed the 0.75s wait when you call `generateMisdemeanours`. If not, try increasing the sleep(750) in `generateMisdemeanours` until it becomes annoying when you reload. Can you show a nice "loading" message while the fake API is loading?
 
 (Hint: One way to do this could be to add an `isLoading` boolean to state, and using this to conditionally display a loading icon, for example.)
 
 👉 The home page could be more exciting. Maybe you could add some statistics, like "total misdemeanours" or "number of confessions today"?
 
-👉 The Confessions page allows users to add details of their confessions, but that data isn't currently being used anywhere. Maybe you could show it on the misdemeanours page?
+👉 The Confessions page allows users to add details of their confessions, but that data isn't currently being used anywhere. Maybe you could show it on the misdemeanours page if it is present?
 
 👉 How about showing self-confessed misdemeanours in a different colour on the misdemeanours page?
 
@@ -19,6 +19,8 @@ Here are some ideas for extensions - feel free to implement your own ideas too!
 It would be really cool to see the full site live on the internet. Github offer free hosting for simple sites like this via a service called `Github Pages`.
 
 There's an `npm` package called `gh-pages` which makes this super simple:
+
+💡 NB this was correct at the time of writing but if in doubt look up the documentation for `gh-pages` in case things have changed!
 
 👉 `npm install gh-pages --save-dev`
 
@@ -34,7 +36,7 @@ There's an `npm` package called `gh-pages` which makes this super simple:
 
 ```
 
-👉 Alter the scripts in package.json by adding a predeploy step and changing the deploy step to push your project to github pages
+👉 Alter the scripts in `package.json` by adding a predeploy step and changing the deploy step to push your project to github pages
 
 ```JavaScript
 // ... package.json scripts section...

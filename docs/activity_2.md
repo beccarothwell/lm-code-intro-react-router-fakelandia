@@ -50,25 +50,48 @@ By default, an `active` class is added to a `<NavLink>` component when it is act
 
 ## Getting Misdemeanours
 
-The Fakelandians have provided an API for you to call to get a list of misdemeanours in the [generate misdemeanours.ts](./generate_misdemeanours.ts) file. We'll use this to get the IDs, dates and misdemeanours.
+To get some misdemeanour data, we have to make a call to the server. We've already seen the API call to get misdemeanours:
 
-They've also provided a custom type of `Misdemeanour` for you - a custom type which can be only one of four possible values, corresponding to the four possible Misdemeanours under Fakelandian law.
+👉 `http://localhost:8080/api/misdemeanours/:AMOUNT` where `:AMOUNT` is a number
 
-You can import the `generateMisdemeanours` async function and call it like it's an external API.
+## Typing Misdemeanours
 
-👉 When the application first loads, use hooks to call `generateMisdemeanours` and store the results in some state.
+👀 You may have noticed some handy custom types which the Fakelandians are using in their server, in `misdemeanours.types.ts`
 
-❗ The function is asyncronous so be sure to `await` the results.
+😭 Unfortunately, if you try to import from this file in your React app, you'll get an error!
 
-❗ If you're doing this correctly you should be able to navigate between different pages without changing this state - it should be constant until you hit F5 to refresh the page when it calls `generateMisdemeanours` again. Call it only once on application load!)
+This is because React is configured to disallow imports outside of its working folder, which in this case means anything outside of `./client`
+
+Trying to get around this leads down some deep rabbit holes 🐇 In the real world, we might use the following solutions:
+
+-   Move the custom type to a `shared` folder and perform some configuration wizardry to make imports possible 🧙
+-   Use dedicated tools for sharing code between multiple projects. Keeping multiple projects together in one repository is known as a `monorepo` and there are some powerful tools for this in modern JS development.
+
+However, either of these configurations are overkill for this little project.
+
+We can knowingly break the rule of Don't Repeat Yourself, but with the knowledge that we could figure out a way to share this type between client and server if we really wanted.
+
+👉 Copy the `misdeameanour.types.ts` file into a new `types` folder in your `client` folder. Now you can import it and use it in your React project!
+
+(The disadvantage is that if you edit this type for any reason you'll have to edit it in both places. But you likely won't have to edit it at all.)
+
+## Putting it together: Fetching Misdemeanours
+
+👉 Use `fetch` in your application to get misdemeanour data from the server, with the constraint that you ONLY want to fetch new data when you hit `F5` or otherwise fully refresh the page.
 
 👉 Make this state accessible via `useContext` so you can consume it in sub-components you will write next
+
+❗ The `fetch` function is asynchronous so be sure to `await` the results.
+
+❗ The response from a `fetch` has an async convenience method called `.json`. You can `await` the result of this to get the JSON body of the response.
+
+❗ Think about where your `fetch` should live. Can you abstract the `fetch` code outside of your components? Which component should "own" this data?
 
 👉 Add sub-components to the Misdemeanours page to render all of the misdemeanours in a list
 
 👉 Add a dropdown to the Misdemeanours column that filters the visible list to just one of the four misdemeanours.
 
-❗ This filter shouldn't update the list stored in state - just the list being rendered on this page, so you might need to separate out those two concepts somehow.
+❗ This filter shouldn't update the list stored in state - only the list being rendered on this page, so you might need to separate out those two concepts somehow. Passing a filtered list to the display list from the component which "owns" the misdemeanour data should do it!
 
 ## Punishment Ideas
 

@@ -18,21 +18,66 @@ It looks like they want a form with three elements.
 
 -   A text box for details
 
-## Form Behaviour
+## Form Behaviour - on the Client
 
-**When the form is filled in, THEN the confess button becomes enabled.**
+Let's start by building this form for the _client_ only.
 
-What does "filled in" mean, exactly? It's up to you! Perhaps the subject line is required, and the details must be a certain length, and a dropdown option must be selected? Or maybe you think other requirements make more sense - choose some sensible form states that will **enable** or **disable** the Confess button!
+In other words, users should be able to fill in these details, but the `Confess` button won't actually do anything... yet.
 
-**When Confess is pressed: IF they are confessing to a crime THEN it should be added to the list of crimes in the current application state. However, IF they just want to talk, THEN you can log their request in the console.**
+**We'll look at what happens when the Confess button is pressed later**
+
+👉 First criteria: **When the form is filled in with valid data, THEN the confess button becomes enabled.**
+
+Hmm. 🤔 What does "filled in with valid data" mean, exactly?
+
+Well... it's up to you! Perhaps the subject line is required, and the details must be a certain length, and a dropdown option must be selected? Or maybe you think other requirements make more sense?
+
+👉 Choose some sensible rules for your form data that will **enable** or **disable** the Confess button!
+
+👉 Build a form that obeys those rules, showing UI to the user that demonstrates if the form is valid or not.
+
+💡 Perhaps you want to make the border of invalid textboxes `red`, and valid ones `green`. Perhaps you want to show a little message explaining what is valid or isn't?
+
+💡 Don't worry about making this validation code re-useable. Making generic validation code that can be reused across multiple forms is a tough problem - for now we can just make sure that each `<input>` is valid.
 
 👉 Try to keep your commits for this activity small and isolated - each of these bullet points is a good candidate for its own commit... or even multiple small commits per bullet point!
 
-👉 Build a form that obeys the above rules, with your own interpretation of what it means for the form to be correctly filled in.
+👉 This might be a good candidate for some testing. (If you haven't been testing all your components already... you have, right?!) Add a `{filename}.test.tsx` file to check your button is enabled/disabled correctly, and that validation is working properly, given the right props to the form component.
 
-👉 This might be a good candidate for some testing. (If you haven't been testing all your components already... you have, right?!) Add a `test.tsx` file to check your button is enabled/disabled correctly given the right props to the form component.
+## Pressing Confess - Send to the Server
 
-👉 Check you can submit your own crimes that get added to the list in state. It's starting to feel like a real app! (If a weird one.)
+👉 When submitting a form, the data should be POSTed to the server with the following format:
+
+```JSON
+{
+	"subject": "subject line",
+	"reason": "", // either a MisdemeanourKind OR the string `just-talk`
+	"details": "details here"
+}
+```
+
+You must POST the above form data to the endpoint:
+
+`{sameBaseUrl}/api/confess`
+
+👉 The endpoint will respond with:
+
+```TypeScript
+// JSON
+{
+	"success": boolean, // true for success; false for an error
+	"justTalked": boolean; // true if this was just wanting to talk, false for a real confession. Not present if success is false.
+	"message": string; // a message
+}
+```
+
+👉 When your app receives the response to the POST, your app must:
+
+1️⃣ Display an error message from `message` if `success` is `false`
+
+2️⃣ If `success` is `true` and `justTalked` is `false`, i.e. it's a real confession, you should add the confession data to your list of misdemeanours so this new crime is visible on the misdemeanours page. (NB: the server does not save this data so if you hit F5 it will be lost. That's okay!)
+
+3️⃣ If `justTalked` is `true`, you don't have to do anything.
 
 👉 Hold on! Have you been writing quality, valid, accessible HTML? Maybe now is a good time to run your generated HTML through a validator and see!
 

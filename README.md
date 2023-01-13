@@ -34,38 +34,74 @@ As a non-citizen, you might not be aware that there are only four possible crime
 
 Despite the clear severity of some of these awful crimes, the Fakelandians refer to them all as "misdemeanours".
 
+## Project Structure
+
+The Fakelandians have provided you with a functioning web server which you can call to get details of any recent crimes.
+
+Let's test that out first.
+
+👉 Run `npm install` and then `npm run start-server`
+
+⚠️ NOTE: The command is `npm run start-server` NOT `npm start`
+
+The server will start up. You should see a little welcome message in your terminal:
+
+![Server Welcome](./docs/images/server_welcome.jpg 'Server welcome message')
+
+It seems you can access the server by browsing to various URLs.
+
+👉 In your browser, navigate to the health check route `http://localhost:8080/health`
+
+You should see a message:
+
+"👍 Okay! The server is responding! 🙌"
+
+👉 In your browser, navigate to the API route `http://localhost:8080/misdemeanours/3`
+
+You should see a JSON object being returned from the GET request to that route. Try changing the parameter at the end to another number, or to a random string.
+
+Okay, so that's the server our React app is going to be interacting with.
+
+First, we're going to need a React app.
+
 ## Creating your application
 
 To create your application, run the following command in the root folder:
 
 ```
-npx create-react-app . --template typescript
+npx create-react-app@latest ./client --template typescript
 ```
 
-Note: If you run into problems i.e.
+This will setup a fresh React app for you in a subfolder called `/client`, with TypeScript already enabled.
 
-    "You are running `create-react-app` 4.0.3, which is behind the latest release (5.0.0).
+👀 Notice that in the root `package.json` there is a convenience command setup in the `scripts` section:
 
-    We no longer support global installation of Create React App."
+`"start": "concurrently -n client,server -c cyan,magenta \"npm run start-client\" \"npm run start-server\""`
 
-Try the command
+This uses an `npm` package called `concurrently` to run both the client React app and the server at the same time when you run `npm start` in the root folder.
 
-```
-npx create-react-app@latest {Your project name} --template typescript
-```
+👉 Ensure your server is stopped by pressing `Ctrl-C` in the terminal where it is running.
 
-This will setup a fresh React app for you, with everything for TypeScript already enabled.
-
-Followed by:
-
-```
-npm start & npm test
-```
+👉 Run `npm start` to start up both your server and your React app.
 
 You should then be able to access the default application by opening the browser and visiting
 
 [http://localhost:3000](http://localhost:3000)
 
+👉 🤚🛑⛔ STOP 🤚🛑⛔ At this point, you should be able to browse to BOTH your server at the health check or API routes we tried above, AND in another tab you should see your starter React app.
+
+🙌 If both are running at the same time, then we're good to go!
+
+👉 Once you add tests to your client, you can start them by running `npm test-client` in the root folder.
+
+👉 If you want to start the server, the client, AND run your client tests simultaneously you can stop everything and run this command:
+
+```
+npm start & npm test-client
+```
+
 ## Let's get started
 
-Time to start building the app the Fakelandians want. Let's start with the homepage in [activity 1](./docs/activity_1.md).
+Once you're happy you have got the client and server running together, it's time to start building the app the Fakelandians want.
+
+Let's start with the homepage in [activity 1](./docs/activity_1.md).

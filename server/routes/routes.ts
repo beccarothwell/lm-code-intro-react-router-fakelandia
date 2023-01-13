@@ -1,6 +1,10 @@
 import * as express from 'express';
 import { Express } from 'express';
-import { getMisdemeanours } from '../services/midemeanours_service';
+import {
+	getMisdemeanours,
+	handleConfession,
+	weaklyValidateConfession,
+} from '../services/midemeanours_service';
 
 export function initialiseRoutes(app: Express) {
 	console.log('🏗️  Setting up routers...');
@@ -42,7 +46,7 @@ function addAPIRoutes(app: Express) {
 	});
 
 	// this route allows clients to GET misdemeanours
-	console.log('📨  Adding misdemeanour route...');
+	console.log('📨  Adding GET misdemeanour route...');
 	apiRouter.get('/misdemeanours/:amount', async (req, res) => {
 		const amount = req.params.amount;
 
@@ -57,6 +61,22 @@ function addAPIRoutes(app: Express) {
 			misdemeanours: await getMisdemeanours(requestedAmount),
 		});
 		res.status(200).send(result);
+	});
+
+	// this route allows clients to POST confessions
+	console.log('📨  Adding POST confession route...');
+	apiRouter.post('/confess/', async (req, res) => {
+		const { body } = req;
+
+		if (weaklyValidateConfession(body)) {
+			const result = await handleConfession(body);
+			res.status(200).send(JSON.stringify(result));
+		} else {
+			res.status(500).send({
+				success: false,
+				message: 'Invalid Confession',
+			});
+		}
 	});
 
 	console.log('🛠️  Applying API router to Express server...');

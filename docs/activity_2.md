@@ -4,7 +4,7 @@
 
 Let's see what the design is for this page:
 
-![Misdemeanours](./images/misdemeanours.png 'Sketched misdemeanour page')
+![Misdemeanours](./images/misdemeanours.png "Sketched misdemeanour page")
 
 Whoa! There's a LOT going on there.
 
@@ -20,10 +20,10 @@ Then, the date.
 
 Then, the misdemeanour, which they insist is always shown next to an appropriate emoji:
 
--   Mild Public Rudeness = 🤪
--   Speaking in a Lift = 🗣
--   Not Eating Your Vegetables = 🥗
--   Supporting Manchester United = 😈
+- Mild Public Rudeness = 🤪
+- Speaking in a Lift = 🗣
+- Not Eating Your Vegetables = 🥗
+- Supporting Manchester United = 😈
 
 Lastly, the "Punishment Idea". Under the Fakelandian system all punishments are random. They find a random picture on the internet and use it as inspiration for the appropriate punishment. Due to the low number of crimes, this weird system supposedly works extremely well.
 
@@ -64,8 +64,8 @@ This is because React is configured to disallow imports outside of its working f
 
 Trying to get around this leads down some deep rabbit holes 🐇 In the real world, we might use the following solutions:
 
--   Move the custom type to a `shared` folder and perform some configuration wizardry to make imports possible 🧙
--   Use dedicated tools for sharing code between multiple projects. Keeping multiple projects together in one repository is known as a `monorepo` and there are some powerful tools for this in modern JS development.
+- Move the custom type to a `shared` folder and perform some configuration wizardry to make imports possible 🧙
+- Use dedicated tools for sharing code between multiple projects. Keeping multiple projects together in one repository is known as a `monorepo` and there are some powerful tools for this in modern JS development.
 
 However, either of these configurations are overkill for this little project.
 

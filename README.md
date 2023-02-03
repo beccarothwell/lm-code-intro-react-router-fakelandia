@@ -82,9 +82,9 @@ There are different ways to create a React application.
 
 👉 Instructions for both methods are below - read them both and choose one!
 
-### The "Create React App" way
+### Option One: The "Create React App" way
 
-One way, is with Create React App (CRA).
+One way is with Create React App (CRA).
 
 To create your application with CRA, run the following command in the root folder:
 
@@ -94,7 +94,7 @@ npx create-react-app@latest ./client --template typescript
 
 This will setup a fresh React app for you in a subfolder called `/client`, with TypeScript already enabled.
 
-### The Vite way
+### Option Two: The Vite way
 
 Here's the command to setup your React app using Vite:
 

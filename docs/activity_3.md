@@ -4,7 +4,7 @@
 
 Here's the design for this page:
 
-![Confess To Us](./images/confess.png 'Sketched confession page')
+![Confess To Us](./images/confess.png "Sketched confession page")
 
 Well, that's pretty surprising.
 
@@ -12,11 +12,11 @@ Well, that's pretty surprising.
 
 It looks like they want a form with three elements.
 
--   A subject line for the confession.
+- A subject line for the confession.
 
--   A dropdown for the reason for the confession. This could be either a type of misdemeanour, or "I just want to talk"
+- A dropdown for the reason for the confession. This could be either a type of misdemeanour, or "I just want to talk"
 
--   A text box for details
+- A text box for details
 
 ## Form Behaviour - on the Client
 
@@ -79,8 +79,8 @@ You must POST the above form data to the endpoint:
 
 3️⃣ If `justTalked` is `true`, you don't have to do anything.
 
-👉 Hold on! Have you been writing quality, valid, accessible HTML? Maybe now is a good time to run your generated HTML through a validator and see!
+👉 Hold on! Have you been writing quality, valid, [accessible HTML](https://reactjs.org/docs/accessibility.html#semantic-html)? Maybe now is a good time to run your generated HTML through a validator and see! To do this, you can open your app in the browser and copy/paste the HTML from dev tools into a validator. 🙌
 
-## The Next Level
+## The Next Level 🔥
 
 If you're feeling up to it, [activity 4](./activity_4.md) has some suggestions for taking your app to new heights - including deploying it live on the internet! 🤩

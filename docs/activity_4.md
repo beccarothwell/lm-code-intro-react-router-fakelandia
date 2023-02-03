@@ -81,7 +81,7 @@ If you were in full control of the hosting server you could configure it to send
 
 There are several ways to do this, but the easiest (or, at least, laziest 😅) is to change our `<BrowserRouter>` component to a `<HashRouter>`. This changes the URLs for our router to use `#` rather than `/` to separate subpages - so from the server's point of view they're all part of the same page. Our URLs look a bit uglier, but at least it works with our free GitHub Pages hosting!
 
-## Hooray!
+## Hooray! 🥳
 
 You've done it! You've modernised the extremely unusual justice system of Fakelandia, and hopefully had some fun and got to experiment a little in the process.
 

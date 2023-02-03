@@ -1,6 +1,6 @@
-# Justice for Fakelandia
+# Justice for Fakelandia ⚖️
 
-## Introduction
+## Introduction 🧑‍⚖️
 
 The faraway country of Fakelandia has decided to modernise their justice system with a fancy new technology: "websites".
 
@@ -16,10 +16,10 @@ This is your chance to show off everything you've learned about building React a
 
 Remember the importance of:
 
--   Writing tests for your components
--   Using BEM to write scalable, reusable CSS
--   Keeping your components small and refactoring them into sub-components where necessary
--   Using hooks to store state, make API calls, and pass data down to sub-components through contexts
+- Writing tests for your components
+- Using BEM/OOCSS to write scalable, reusable CSS
+- Keeping your components small and refactoring them into sub-components where necessary
+- Using hooks to store state, make API calls, and pass data down to sub-components through contexts
 
 ## Crimes and Misdemeanours
 
@@ -27,14 +27,16 @@ The Fakelandians have asked for a site that lets them browse lists of crimes com
 
 As a non-citizen, you might not be aware that there are only four possible crimes in Fakelandia:
 
--   Mild Public Rudeness
--   Speaking in a Lift
--   Not Eating Your Vegetables
--   Supporting Manchester United
+- Mild Public Rudeness
+- Speaking in a Lift
+- Not Eating Your Vegetables
+- Supporting Manchester United
 
 Despite the clear severity of some of these awful crimes, the Fakelandians refer to them all as "misdemeanours".
 
 ## Project Structure
+
+Generally our frontend apps contact servers (via their APIs) which run on other peoples machines. However, it's common in frontend development to run a server locally (on our development machines) to provide a backend for us to call.
 
 The Fakelandians have provided you with a functioning web server which you can call to get details of any recent crimes.
 
@@ -46,7 +48,7 @@ Let's test that out first.
 
 The server will start up. You should see a little welcome message in your terminal:
 
-![Server Welcome](./docs/images/server_welcome.jpg 'Server welcome message')
+![Server Welcome](./docs/images/server_welcome.jpg "Server welcome message")
 
 It seems you can access the server by browsing to various URLs.
 
@@ -64,9 +66,15 @@ Okay, so that's the server our React app is going to be interacting with.
 
 First, we're going to need a React app.
 
-## Creating your application
+## Creating your application ✨
 
-To create your application, run the following command in the root folder:
+There are different ways to create a React application.
+
+### The "Create React App" way
+
+One way, is with Create React App (CRA).
+
+To create your application with CRA, run the following command in the root folder:
 
 ```
 npx create-react-app@latest ./client --template typescript
@@ -99,6 +107,24 @@ You should then be able to access the default application by opening the browser
 ```
 npm start & npm test-client
 ```
+
+### The Vite way
+
+[Vite](https://vitejs.dev/guide/) is a popular alternative to Create React App, with faster build times and more flexibility than create-react-app.
+
+Here's the command for that:
+
+```
+npm create vite@latest
+```
+
+You will get prompted to name your app and asked which language to use.
+
+Name your app "client" and select "React" and "TypeScript".
+
+If you use Vite then your local port will be different (not 3000) and the command to start the app will need changing in packge.json but otherwise you can follow these instructions exactly.
+
+It's up to you whether you stick with CRA or try an alternative!
 
 ## Let's get started
 

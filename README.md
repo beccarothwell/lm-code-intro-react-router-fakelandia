@@ -16,10 +16,10 @@ This is your chance to show off everything you've learned about building React a
 
 Remember the importance of:
 
-- Writing tests for your components
-- Using BEM/OOCSS to write scalable, reusable CSS
-- Keeping your components small and refactoring them into sub-components where necessary
-- Using hooks to store state, make API calls, and pass data down to sub-components through contexts
+-   Writing tests for your components
+-   Using BEM/OOCSS to write scalable, reusable CSS
+-   Keeping your components small and refactoring them into sub-components where necessary
+-   Using hooks to store state, make API calls, and pass data down to sub-components through contexts
 
 ## Crimes and Misdemeanours
 
@@ -27,10 +27,10 @@ The Fakelandians have asked for a site that lets them browse lists of crimes com
 
 As a non-citizen, you might not be aware that there are only four possible crimes in Fakelandia:
 
-- Mild Public Rudeness
-- Speaking in a Lift
-- Not Eating Your Vegetables
-- Supporting Manchester United
+-   Mild Public Rudeness
+-   Speaking in a Lift
+-   Not Eating Your Vegetables
+-   Supporting Manchester United
 
 Despite the clear severity of some of these awful crimes, the Fakelandians refer to them all as "misdemeanours".
 
@@ -48,7 +48,7 @@ Let's test that out first.
 
 The server will start up. You should see a little welcome message in your terminal:
 
-![Server Welcome](./docs/images/server_welcome.jpg "Server welcome message")
+![Server Welcome](./docs/images/server_welcome.jpg 'Server welcome message')
 
 It seems you can access the server by browsing to various URLs.
 
@@ -64,11 +64,23 @@ You should see a JSON object being returned from the GET request to that route. 
 
 Okay, so that's the server our React app is going to be interacting with.
 
-First, we're going to need a React app.
+💡 Now's a good time to have a nose 🐽 around at how the server works and get familiar with the `routes.ts` file, `services` folder and `misdemeanours.types.ts` file.
 
-## Creating your application ✨
+⚠️ You don't need to touch anything inside the server, so this exploration is just for curiosity and learning!
+
+Now, we're going to need a React app.
+
+## Creating your React application ✨
 
 There are different ways to create a React application.
+
+1️⃣ `Create React App` - CRA is what we've been using so far in the programme to make our React apps.
+
+2️⃣ `Vite` - [Vite](https://vitejs.dev/guide/) is a popular alternative to Create React App, with faster build times and more flexibility than create-react-app.
+
+👉 Choose one of the above approaches - you will be more familiar with CRA, but you might enjoy exploring Vite - it's only a _little_ bit different, and many people prefer the Vite developer experience.
+
+👉 Instructions for both methods are below - read them both and choose one!
 
 ### The "Create React App" way
 
@@ -82,49 +94,53 @@ npx create-react-app@latest ./client --template typescript
 
 This will setup a fresh React app for you in a subfolder called `/client`, with TypeScript already enabled.
 
+### The Vite way
+
+Here's the command to setup your React app using Vite:
+
+```bash
+# 💡 This is NOT a typo, the extra "--" IS needed! 😮
+
+npm create vite@latest client -- --template react-ts
+```
+
+👉 Run the above command, then `cd client` and then `npm install` as instructed by the terminal.
+
+👉 In your ROOT `package.json` (i.e. the one in the root folder NOT the one in the client folder), edit the existing "start-client" script to:
+
+`"start-client": "cd client && npm run dev",`
+
+👉 Now run `cd ..` to return your terminal to your root folder. You should be able to run `npm run start-client` in your root folder to run your React app.
+
+💡 Optionally, you can now change the `client/package.json` to open your browser automatically when you start the app, by changing the `dev` script like this:
+
+`"dev": "vite --open"`
+
+⚠️ If you choose to use Vite then your local port will be different, i.e. `http://localhost:XXXX` not `http://localhost:3000` so make sure your port matches what shows up in your terminal when you run `npm run start-client`.
+
+### Running client and server together
+
+⚠️ 🛑 At this point you should have a React app running using `npm run start-client` in the root folder, whether you installed it with CRA or Vite. 🛑 ⚠️
+
 👀 Notice that in the root `package.json` there is a convenience command setup in the `scripts` section:
 
 `"start": "concurrently -n client,server -c cyan,magenta \"npm run start-client\" \"npm run start-server\""`
 
 This uses an `npm` package called `concurrently` to run both the client React app and the server at the same time when you run `npm start` in the root folder.
 
-👉 Ensure your server is stopped by pressing `Ctrl-C` in the terminal where it is running.
+👉 Ensure your server and client are not running by pressing `Ctrl-C` in any terminal where they are running.
 
-👉 Run `npm start` to start up both your server and your React app.
+👉 Run `npm start` in the root folder to start up both your server and your React app.
 
 You should then be able to access the default application by opening the browser and visiting
 
 [http://localhost:3000](http://localhost:3000)
 
-👉 🤚🛑⛔ STOP 🤚🛑⛔ At this point, you should be able to browse to BOTH your server at the health check or API routes we tried above, AND in another tab you should see your starter React app.
+👉 🤚🛑⛔ STOP 🤚🛑⛔ At this point, you should be able to use `npm start` and then browse to your server at the health check, AND simultaneously in another tab you should see your starter React app.
 
-🙌 If both are running at the same time, then we're good to go!
+🙌 If both the server and React app are running at the same time, then we're good to continue! If not, please get that working before you continue - ask for help if you need.
 
-👉 Once you add tests to your client, you can start them by running `npm test-client` in the root folder.
-
-👉 If you want to start the server, the client, AND run your client tests simultaneously you can stop everything and run this command:
-
-```
-npm start & npm test-client
-```
-
-### The Vite way
-
-[Vite](https://vitejs.dev/guide/) is a popular alternative to Create React App, with faster build times and more flexibility than create-react-app.
-
-Here's the command for that:
-
-```
-npm create vite@latest
-```
-
-You will get prompted to name your app and asked which language to use.
-
-Name your app "client" and select "React" and "TypeScript".
-
-If you use Vite then your local port will be different (not 3000) and the command to start the app will need changing in packge.json but otherwise you can follow these instructions exactly.
-
-It's up to you whether you stick with CRA or try an alternative!
+💡 Later, once you add tests to your client, you can start them by running `npm test-client` in the root folder.
 
 ## Let's get started
 

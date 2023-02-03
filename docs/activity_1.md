@@ -6,7 +6,7 @@ Much of this task is about practicing taking a visual design and turning it into
 
 Take a look at this image the goverment of Fakelandia have provided:
 
-![Homepage](./images/homepage.png "Sketched homepage")
+![Homepage](./images/homepage.png 'Sketched homepage')
 
 This is their desired homepage. From the header, it looks like you'll want multiple **routes**. Perhaps one for your homepage, and perhaps one each for the "misdemeanours" and "confession" pages?
 
@@ -35,8 +35,6 @@ npm install react-router-dom @types/react-router-dom
 👉 Add react-router components and define routes which render the correct dummy components when you navigate to the URLs for your homepage, and a misdemeanours page, and a confession page.
 
 (You will have to choose these URLs when you define your routes!)
-
-💡 Have a nose 🐽 around and get familiar with the `routes.ts` file, `services` folder and `misdemeanours.types.ts` file.
 
 🛑 For now, don't think about the server or accessing the real data. We're just setting up a structure for the website.
 
@@ -72,10 +70,10 @@ From the image we've seen so far, it seems like the Fakelandians want a header w
 
 👉 Remember to **commit** your code often. Small commits with descriptive messages are best, e.g.:
 
-- "feat: Initial commit"
-- "chore(deps): Installed `react-router`"
-- "feat: Added base route components"
-- "feat: Added footer"
-- "fix: Removed footer"
+-   "feat: Initial commit"
+-   "chore(deps): Installed `react-router`"
+-   "feat: Added base route components"
+-   "feat: Added footer"
+-   "fix: Removed footer"
 
 So far we've set up the basics of a functioning website! Let's get looking at that misdemeanours page in [activity 2](./activity_2.md)

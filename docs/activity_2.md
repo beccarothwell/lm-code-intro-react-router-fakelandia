@@ -25,7 +25,7 @@ Then, the misdemeanour, which they insist is always shown next to an appropriate
 - Not Eating Your Vegetables = 🥗
 - Supporting Manchester United = 😈
 
-Lastly, the "Punishment Idea". Under the Fakelandian system all punishments are random. They find a random picture on the internet and use it as inspiration for the appropriate punishment. Due to the low number of crimes, this weird system supposedly works extremely well.
+Lastly, the "Punishment Idea". Under the Fakelandian system all punishments are random. They find a random picture on the internet (using a special service we'll discuss later on) and use it as inspiration for the appropriate punishment. Due to the low number of crimes, this weird system supposedly works extremely well.
 
 ## Let's build it!
 
@@ -73,21 +73,25 @@ We can knowingly break the rule of Don't Repeat Yourself, but with the knowledge
 
 👉 Copy the `misdeameanour.types.ts` file into a new `types` folder in your `client` folder. Now you can import it and use it in your React project!
 
-(The disadvantage is that if you edit this type for any reason you'll have to edit it in both places. But you likely won't have to edit it at all.)
+(The disadvantage is that if you edit this type for any reason you'll have to edit it in both places. But you won't have to edit it at all during this assignment, so copying it to your `client` project will be fine.)
 
 ## Putting it together: Fetching Misdemeanours
 
 👉 Use `fetch` in your application to get misdemeanour data from the server, with the constraint that you ONLY want to fetch new data when you hit `F5` or otherwise fully refresh the page.
 
-👉 Make this state accessible via `useContext` so you can consume it in sub-components you will write next
+💡 Hint: `useEffect` can help here. If you don't pass any dependencies into the dependency array, it will only fire once!
 
 ❗ The `fetch` function is asynchronous so be sure to `await` the results.
 
-❗ The response from a `fetch` has an async convenience method called `.json`. You can `await` the result of this to get the JSON body of the response.
+❗ The response from a `fetch` has an async convenience method called `.json()`. You can `await` the result of this to get the JSON body of the response.
 
 ❗ Think about where your `fetch` should live. Can you abstract the `fetch` code outside of your components? Which component should "own" this data?
 
-👉 Add sub-components to the Misdemeanours page to render all of the misdemeanours in a list
+❗ Store the resulting list of misdemeanours in state.
+
+👉 Make this state accessible via `useContext` so you can consume it in sub-components you will write next.
+
+👉 Add sub-components to the Misdemeanours page to render all of the misdemeanours in a list.
 
 👉 Add a dropdown to the Misdemeanours column that filters the visible list to just one of the four misdemeanours.
 

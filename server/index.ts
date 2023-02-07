@@ -1,5 +1,5 @@
 import * as express from 'express';
-
+import * as cors from 'cors';
 import { Server } from 'http';
 import { initialiseRoutes } from './routes/routes';
 import { printNewLine } from './helpers/helpers';
@@ -17,6 +17,9 @@ try {
 
 	console.log('👉 Enabling URL-Encoded middleware...');
 	app.use(express.urlencoded({ extended: true }));
+
+	console.log('👉 Enabling CORS...');
+	app.use(cors());
 
 	initialiseRoutes(app);
 

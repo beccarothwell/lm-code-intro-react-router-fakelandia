@@ -4,7 +4,7 @@
 
 Here's the design for this page:
 
-![Confess To Us](./images/confess.png "Sketched confession page")
+![Confess To Us](./images/confess.png 'Sketched confession page')
 
 Well, that's pretty surprising.
 
@@ -12,11 +12,11 @@ Well, that's pretty surprising.
 
 It looks like they want a form with three elements.
 
-- A subject line for the confession.
+-   A subject line for the confession.
 
-- A dropdown for the reason for the confession. This could be either a type of misdemeanour, or "I just want to talk"
+-   A dropdown for the reason for the confession. This could be either a type of misdemeanour, or "I just want to talk"
 
-- A text box for details
+-   A text box for details
 
 ## Form Behaviour - on the Client
 
@@ -76,6 +76,8 @@ You must POST the above form data to the endpoint:
 1️⃣ Display an error message from `message` if `success` is `false`
 
 2️⃣ If `success` is `true` and `justTalked` is `false`, i.e. it's a real confession, you should add the confession data to your list of misdemeanours so this new crime is visible on the misdemeanours page. (NB: the server does not save this data so if you hit F5 it will be lost. That's okay!)
+
+🤔 You may notice that the returned data isn't _quite_ the same data type as the result from GETting misdemeanours. It's up to you how you handle this little inconsistency while meeting the requirements.
 
 3️⃣ If `justTalked` is `true`, you don't have to do anything.
 

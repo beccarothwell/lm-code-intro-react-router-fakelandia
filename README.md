@@ -58,7 +58,7 @@ You should see a message:
 
 "👍 Okay! The server is responding! 🙌"
 
-👉 In your browser, navigate to the API route `http://localhost:8080/misdemeanours/3`
+👉 In your browser, navigate to the API route `http://localhost:8080/api/misdemeanours/3`
 
 You should see a JSON object being returned from the GET request to that route. Try changing the parameter at the end to another number, or to a random string.
 

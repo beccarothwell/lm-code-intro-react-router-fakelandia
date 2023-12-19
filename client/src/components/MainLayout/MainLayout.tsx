@@ -1,12 +1,14 @@
 import { Outlet } from "react-router-dom";
+import Header from "../Header/Header";
+import Footer from "../Footer.tsx/Footer";
 
 const MainLayout = () => (
   <>
-    <header />
+    <Header />
     <main className="p-6" style={{ flex: "1" }}>
       <Outlet />
     </main>
-    <footer />
+    <Footer />
   </>
 );
 export default MainLayout;

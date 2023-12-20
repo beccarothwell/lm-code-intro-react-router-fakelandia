@@ -1,14 +1,13 @@
-import NavItem from "../NavItem/NavItem";
-import { NavItemLink } from "../constants";
+import { NavItem, NavItemProps } from "../NavItem/NavItem";
 
 interface NavListProps {
-  navList: NavItemLink[];
+  navList: NavItemProps[];
 }
 
 const NavList: React.FC<NavListProps> = ({ navList }) => (
-  <ul>
-    {navList.map((item) => (
-      <NavItem navItem={item} />
+  <ul className={"nav__menu"}>
+    {navList.map(({ text, slug }) => (
+      <NavItem key={slug} text={text} slug={slug} />
     ))}
   </ul>
 );

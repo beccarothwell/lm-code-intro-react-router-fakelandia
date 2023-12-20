@@ -1,14 +1,14 @@
-import { NavItemLink } from "../constants";
 import { NavLink } from "react-router-dom";
 
-interface NavItemProps {
-  navItem: NavItemLink;
+export interface NavItemProps {
+  text: string;
+  slug: string;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ navItem }) => (
-  <li>
-    <NavLink to={`/${navItem.slug}`}>{navItem.text}</NavLink>
+export const NavItem: React.FC<NavItemProps> = ({ text, slug }) => (
+  <li className={"nav__menu-item"}>
+    <NavLink className={"nav__link"} to={`/${slug}`}>
+      {text}
+    </NavLink>
   </li>
 );
-
-export default NavItem;

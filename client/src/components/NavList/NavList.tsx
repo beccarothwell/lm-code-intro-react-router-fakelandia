@@ -1,3 +1,4 @@
+import "./NavList.scss";
 import { NavItem, NavItemProps } from "../NavItem/NavItem";
 
 interface NavListProps {
@@ -5,7 +6,7 @@ interface NavListProps {
 }
 
 const NavList: React.FC<NavListProps> = ({ navList }) => (
-  <ul className={"nav__menu"}>
+  <ul className={"nav__list"}>
     {navList.map(({ text, slug }) => (
       <NavItem key={slug} text={text} slug={slug} />
     ))}

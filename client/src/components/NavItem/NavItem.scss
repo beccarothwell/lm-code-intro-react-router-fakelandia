@@ -9,4 +9,10 @@
 
 .nav__link {
   color: var(--text-color);
+
+  &:hover,
+  &:active,
+  &.active {
+    color: var(--highlight-color);
+  }
 }

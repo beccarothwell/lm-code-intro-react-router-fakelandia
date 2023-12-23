@@ -6,8 +6,8 @@ import { NavItemProps } from "../NavItem/NavItem";
 
 const MAIN_NAV_LINKS: Array<NavItemProps> = [
   { text: "Home", slug: "" },
-  { text: "Confess To Us", slug: "confession" },
   { text: "Misdemeanour", slug: "misdemeanour" },
+  { text: "Confess To Us", slug: "confession" },
 ];
 
 const Nav: React.FC = () => (

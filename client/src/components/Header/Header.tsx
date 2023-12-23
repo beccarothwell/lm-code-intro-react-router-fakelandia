@@ -1,7 +1,9 @@
+import "./Header.scss";
+
 import Nav from "../Nav/Nav";
 
 const Header: React.FC = () => (
-  <header>
+  <header className="page__header">
     <Nav />
   </header>
 );

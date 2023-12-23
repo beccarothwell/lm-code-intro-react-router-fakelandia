@@ -1,3 +1,4 @@
+import "./NavBrand.scss";
 import { NavLink } from "react-router-dom";
 
 interface NavBrandProps {
@@ -5,13 +6,22 @@ interface NavBrandProps {
   slug?: string;
 }
 
-const NavBrand: React.FC<NavBrandProps> = ({ text, slug }) =>
-  slug !== undefined ? (
-    <NavLink className={"brand"} to={`/${slug}`}>
-      {text}
+const NavBrand: React.FC<NavBrandProps> = ({ text, slug }) => {
+  const splitText = text.split(" ");
+
+  return slug !== undefined ? (
+    <NavLink className={"nav__brand nav__brand--stacked"} to={`/${slug}`}>
+      {splitText.map((word) => (
+        <span>{word}</span>
+      ))}
     </NavLink>
   ) : (
-    <div className={"brand"}>{text}</div>
+    <div className={"nav__brand nav__brand--stacked"}>
+      {splitText.map((word) => (
+        <span>{word}</span>
+      ))}
+    </div>
   );
+};
 
 export default NavBrand;

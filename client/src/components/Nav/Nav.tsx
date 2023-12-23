@@ -1,10 +1,12 @@
+import "./Nav.scss";
+
 import NavList from "../NavList/NavList";
 import NavBrand from "../NavBrand/NavBrand";
 import { NavItemProps } from "../NavItem/NavItem";
 
 const MAIN_NAV_LINKS: Array<NavItemProps> = [
   { text: "Home", slug: "" },
-  { text: "Confession", slug: "confession" },
+  { text: "Confess To Us", slug: "confession" },
   { text: "Misdemeanour", slug: "misdemeanour" },
 ];
 

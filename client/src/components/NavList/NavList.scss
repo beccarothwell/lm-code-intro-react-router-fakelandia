@@ -1,0 +1,17 @@
+.nav__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1em;
+  flex: 1;
+  justify-content: space-evenly;
+  flex-direction: column;
+
+  @media (min-width: 600px) {
+    align-items: flex-end;
+  }
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+  }
+}

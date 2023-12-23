@@ -1,3 +1,5 @@
+import "./MainLayout.scss";
+
 import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer.tsx/Footer";
@@ -5,7 +7,7 @@ import Footer from "../Footer.tsx/Footer";
 const MainLayout = () => (
   <>
     <Header />
-    <main className="p-6" style={{ flex: "1" }}>
+    <main className="page__content">
       <Outlet />
     </main>
     <Footer />

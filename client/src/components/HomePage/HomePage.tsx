@@ -1,6 +1,6 @@
-import "./Home.scss";
+import "./HomePage.scss";
 
-const Home: React.FC = () => (
+const HomePage: React.FC = () => (
   <>
     <h1 className="page__title">
       Welcome to the home of the Justice Department of Fakelandia.
@@ -12,4 +12,4 @@ const Home: React.FC = () => (
   </>
 );
 
-export default Home;
+export default HomePage;

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MisdemeanoursContext } from "../../App";
 
-const Misdemeanour: React.FC = () => {
+const MisdemeanourPage: React.FC = () => {
   const { data, isFetching, errorMessage } = useContext(MisdemeanoursContext);
 
   const misdemeanours = data ? data.misdemeanours : [];
@@ -15,4 +15,4 @@ const Misdemeanour: React.FC = () => {
   );
 };
 
-export default Misdemeanour;
+export default MisdemeanourPage;

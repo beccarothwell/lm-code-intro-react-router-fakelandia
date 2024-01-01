@@ -1,11 +1,26 @@
+@import "./functions";
+
 $purple: #6c2886;
 $dark-purple: #694783;
 $purple-navy: #544e87;
 $yellow: #f7f7a3;
 $green: #45808a;
-$grey: #f2f2e9;
-$dark-grey: #555;
+$grey: #aaa;
 $white: #fff;
+$black: #000;
 
-$text-color: $dark-grey;
-$text-color-dark: $white;
+$grey-100: tint($grey, 80%); //#eee
+$grey-200: tint($grey, 60%); //#ddd
+$grey-300: tint($grey, 40%); //#ccc
+$grey-400: tint($grey, 20%); //#bbb
+$grey-500: $grey;
+$grey-600: shade($grey, 20%); //#888
+$grey-700: shade($grey, 40%); //#666
+$grey-800: shade($grey, 60%); //#444
+$grey-900: shade($grey, 80%); //#222
+
+$text-color: $grey-800;
+$background-color: $white;
+
+$text-color-dark: $grey-100;
+$background-color-dark: $grey-900;

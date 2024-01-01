@@ -13,9 +13,11 @@ export function useFetch<TData>(url: string): FetchReturn<TData> {
   const [errorMessage, setErrorMessage] = useState<string>();
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, { signal: abortController.signal });
         setIsFetching(false);
         if (!response.ok) {
           if (response.status === 404) {
@@ -36,10 +38,13 @@ export function useFetch<TData>(url: string): FetchReturn<TData> {
         }
       } catch (e: unknown) {
         setIsFetching(false);
-        console.log(isError(e) ? e.message : "Unknown error!");
+        console.log(
+          isError(e) && e.name !== "AbortError" ? e.message : "Unknown error!"
+        );
       }
     };
     fetchData();
+    return () => abortController.abort();
   }, [url]);
 
   return { isFetching: isFetching, data: data, errorMessage: errorMessage };

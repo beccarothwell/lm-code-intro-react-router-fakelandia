@@ -19,19 +19,19 @@ export const MisdemeanoursContext =
   createContext<FetchReturn<MisdemeanourData>>(misdemeanoursDefault);
 
 function App() {
-  const [generationNumber, setGenerationNumber] = useState<number>(0);
+  const [generationNumber, setGenerationNumber] = useState<number>(1);
 
   useEffect(() => {
     setGenerationNumber(Math.floor(Math.random() * (10 - 1) + 1));
   }, []);
 
-  const misdemeanours = useFetch<MisdemeanourData>(
+  const misdemeanoursResponse = useFetch<MisdemeanourData>(
     `http://localhost:8080/api/misdemeanours/${generationNumber}`
   );
 
   return (
     <>
-      <MisdemeanoursContext.Provider value={misdemeanours}>
+      <MisdemeanoursContext.Provider value={misdemeanoursResponse}>
         <BrowserRouter>
           <Router />
         </BrowserRouter>

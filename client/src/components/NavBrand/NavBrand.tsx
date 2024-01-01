@@ -11,8 +11,8 @@ const NavBrand: React.FC<NavBrandProps> = ({ text, slug }) => {
 
   return slug !== undefined ? (
     <NavLink className={"nav__brand nav__brand--stacked"} to={`/${slug}`}>
-      {splitText.map((word) => (
-        <span>{word}</span>
+      {splitText.map((word, i) => (
+        <span key={i}>{word}</span>
       ))}
     </NavLink>
   ) : (

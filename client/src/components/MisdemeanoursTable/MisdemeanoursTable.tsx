@@ -50,7 +50,7 @@ const MisdemeanoursTable: React.FC<MisdemeanoursTableProps> = ({
               citizenId={citizenId}
               date={date}
               misdemeanour={text}
-              punishmentIdea={`https://picsum.photos/seed/${punishmentIdeaSeed}/200`}
+              punishmentIdea={`https://picsum.photos/seed/${punishmentIdeaSeed}`}
             />
           );
         })}

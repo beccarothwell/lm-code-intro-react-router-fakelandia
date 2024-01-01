@@ -26,6 +26,7 @@
 
 :root {
   --text-color: #{$text-color};
+  --background-color: #{$background-color};
   --highlight-color: #{$purple};
 
   font-family: "Exo2", sans-serif;
@@ -34,7 +35,7 @@
 
   color-scheme: light dark;
   color: var(--text-color);
-  background-color: #ffffff;
+  background-color: var(--background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -45,7 +46,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --text-color: #{$text-color-dark};
-    background-color: #242424;
+    --background-color: #{$background-color-dark};
   }
 }
 
@@ -58,6 +59,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   color: var(--text-color);
+  background-color: var(--background-color);
 }
 
 button {

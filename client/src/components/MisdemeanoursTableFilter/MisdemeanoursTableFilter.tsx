@@ -1,3 +1,5 @@
+import "./MisdemeanoursTableFilter.scss";
+
 export interface MisdemeanourTableFilterOption {
   value: string;
   text: string;
@@ -24,17 +26,29 @@ const MisdemeanoursTableFilter: React.FC<MisdemeanoursTableFilterProps> = ({
   <label>
     <span className="visually-hidden">{`${label}: `}</span>
     <select
+      className="misdemeanour-table__filter"
       name={name}
       id={id}
       onChange={(e) => onChange(e.target.value)}
       defaultValue={""}
     >
-      <option value="" disabled hidden>
+      <option
+        className="misdemeanour-table__filter-option"
+        value=""
+        disabled
+        hidden
+      >
         {placeholder ?? "--Please choose an option--"}
       </option>
-      <option value="">All Misdemeanours</option>
+      <option className="misdemeanour-table__filter-option" value="">
+        All Misdemeanours
+      </option>
       {options.map((option, i) => (
-        <option key={i} value={option.value}>
+        <option
+          className="misdemeanour-table__filter-option"
+          key={i}
+          value={option.value}
+        >
           {option.text}
         </option>
       ))}

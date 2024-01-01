@@ -1,0 +1,38 @@
+.misdemeanour-table__data-row {
+  border-top: 1px solid var(--border-color);
+
+  &:nth-of-type(odd) {
+    background: var(--alternating-background-color);
+  }
+
+  @media (max-width: 799.98px) {
+    display: grid;
+    margin-bottom: 0.625em;
+    border-bottom: 3px solid var(--border-color);
+  }
+}
+
+.misdemeanour-table__data-cell {
+  padding: 1em;
+  border-right: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+
+  @media (max-width: 799.98px) {
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: right;
+
+    &::before {
+      content: attr(data-label);
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.misdemeanour-table__data-img {
+  width: 100%;
+}

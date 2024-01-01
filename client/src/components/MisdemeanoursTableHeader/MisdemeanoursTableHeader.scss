@@ -1,0 +1,31 @@
+.misdemeanour-table__header {
+  @media (max-width: 799.98px) {
+    display: grid;
+  }
+
+  &-row {
+    border-top: 1px solid var(--border-color);
+
+    @media (max-width: 799.98px) {
+      display: grid;
+    }
+  }
+
+  &-titles {
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    @media (max-width: 799.98px) {
+      display: none;
+    }
+
+    .misdemeanour-table__header-cell {
+      border-right: 1px solid var(--border-color);
+      border-left: 1px solid var(--border-color);
+    }
+  }
+
+  &-cell {
+    padding: 1em;
+  }
+}

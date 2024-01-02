@@ -13,7 +13,7 @@ test("Given the required props, When the component renders, Then a list item wit
   expect(someListItem).toBeInTheDocument();
 });
 
-test("Given the required props, When the component renders, Then a link item with class nav__link should be present", () => {
+test("Given the required props, When the component renders, Then a link with class nav__link should be present", () => {
   renderWithRouter(
     <NavItem text={"Fakelandia Justice Deptartment"} slug={""} />
   );
@@ -32,7 +32,7 @@ test("Given the required props, When the component renders, Then the text should
   expect(someText).toBeInTheDocument();
 });
 
-test("Given the required props, When the component renders, Then a link element with the correct href should be present", () => {
+test("Given the required props, When the component renders, Then a link with the correct href should be present", () => {
   renderWithRouter(<NavItem text={"Test"} slug={"test"} />);
 
   const someLink = screen.getByRole("link");

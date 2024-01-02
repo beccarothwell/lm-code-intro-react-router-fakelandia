@@ -29,7 +29,7 @@ test("Given the required props, When the component renders, Then the split text 
   expect(someUnsplitText).not.toBeInTheDocument();
 });
 
-test("Given the required props, When the component renders, Then a link element with class nav__brand and the correct href should be present", () => {
+test("Given the required props, When the component renders, Then a link with class nav__brand and the correct href should be present", () => {
   renderWithRouter(
     <NavBrand text={"Fakelandia Justice Deptartment"} slug={""} />
   );

@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import NavList from "./NavList";
 import { renderWithRouter } from "../../../test_helpers/render_with_router";
 
-test("Given the required props, When the component renders, Then the nav should be present", () => {
+test("Given the required props, When the component renders, Then a list with the class nav__list should be present", () => {
   const MAIN_NAV_LINKS = [
     { text: "Home", slug: "" },
     { text: "Misdemeanour", slug: "misdemeanour" },

@@ -1,12 +1,14 @@
+@import "../../styles/variables";
+
 .misdemeanour-table__header {
-  @media (max-width: 799.98px) {
+  @media (max-width: $max-breakpoint-m) {
     display: grid;
   }
 
   &-row {
     border-top: 1px solid var(--border-color);
 
-    @media (max-width: 799.98px) {
+    @media (max-width: $max-breakpoint-m) {
       display: grid;
     }
   }
@@ -15,7 +17,7 @@
     white-space: nowrap;
     text-transform: uppercase;
 
-    @media (max-width: 799.98px) {
+    @media (max-width: $max-breakpoint-m) {
       display: none;
     }
 

@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .misdemeanour-table__data-row {
   border-top: 1px solid var(--border-color);
 
@@ -5,7 +7,7 @@
     background: var(--alternating-background-color);
   }
 
-  @media (max-width: 799.98px) {
+  @media (max-width: $max-breakpoint-m) {
     display: grid;
     margin-bottom: 0.625em;
     border-bottom: 3px solid var(--border-color);
@@ -17,7 +19,7 @@
   border-right: 1px solid var(--border-color);
   border-left: 1px solid var(--border-color);
 
-  @media (max-width: 799.98px) {
+  @media (max-width: $max-breakpoint-m) {
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;

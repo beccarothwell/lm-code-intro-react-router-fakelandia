@@ -24,3 +24,13 @@ $background-color: $white;
 
 $text-color-dark: $grey-100;
 $background-color-dark: $grey-900;
+
+$min-breakpoint-xs: 25rem; //400px
+$min-breakpoint-s: 37.5rem; //600px
+$min-breakpoint-m: 50rem; //800px
+$min-breakpoint-l: 62.5rem; //1000px
+
+$max-breakpoint-xs: 24.999rem; //399.98px
+$max-breakpoint-s: 37.499rem; //599.98px
+$max-breakpoint-m: 49.999rem; //799.98px
+$max-breakpoint-l: 62.499rem; //999.98px

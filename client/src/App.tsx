@@ -9,14 +9,15 @@ interface MisdemeanourData {
   misdemeanours: Misdemeanour[];
 }
 
-const misdemeanoursDefault = {
+export const MISDEMEANOURS_RESPONSE_DEFAULT = {
   isFetching: true,
   data: undefined,
   errorMessage: undefined,
 };
 
-export const MisdemeanoursContext =
-  createContext<FetchReturn<MisdemeanourData>>(misdemeanoursDefault);
+export const MisdemeanoursContext = createContext<
+  FetchReturn<MisdemeanourData>
+>(MISDEMEANOURS_RESPONSE_DEFAULT);
 
 function App() {
   const [generationNumber, setGenerationNumber] = useState<number>(1);

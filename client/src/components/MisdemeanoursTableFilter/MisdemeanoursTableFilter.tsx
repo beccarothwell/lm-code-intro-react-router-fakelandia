@@ -1,9 +1,5 @@
+import { MisdemeanourTableFilterOption } from "../MisdemeanoursTable/MisdemeanoursTable.types";
 import "./MisdemeanoursTableFilter.scss";
-
-export interface MisdemeanourTableFilterOption {
-  value: string;
-  text: string;
-}
 
 interface MisdemeanoursTableFilterProps {
   defaultValue?: string;

@@ -1,6 +1,6 @@
 import MisdemeanoursTableFilter from "../MisdemeanoursTableFilter/MisdemeanoursTableFilter";
 import "./MisdemeanoursTableHeader.scss";
-import { MisdemeanourTableFilterOption } from "../MisdemeanoursTableFilter/MisdemeanoursTableFilter";
+import { MisdemeanourTableFilterOption } from "../MisdemeanoursTable/MisdemeanoursTable.types";
 
 export interface MisdeameanoursColumnHead {
   key: string;

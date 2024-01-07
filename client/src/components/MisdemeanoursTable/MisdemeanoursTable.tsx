@@ -3,15 +3,11 @@ import MisdemeanoursTableHeader from "../MisdemeanoursTableHeader/MisdemeanoursT
 import MisdemeanoursTableRow from "../MisdemeanoursTableRow/MisdemeanoursTableRow";
 import { useMemo, useState } from "react";
 import { MisdeameanoursColumnHead } from "../MisdemeanoursTableHeader/MisdemeanoursTableHeader";
-import { MisdemeanourTableFilterOption } from "../MisdemeanoursTableFilter/MisdemeanoursTableFilter";
+import { MisdeameanoursRowData } from "./MisdemeanoursTable.types";
 
 interface MisdemeanoursTableProps {
   headerData: MisdeameanoursColumnHead[];
-  bodyData: {
-    citizenId: number;
-    date: string;
-    misdemeanour: MisdemeanourTableFilterOption;
-  }[];
+  bodyData: MisdeameanoursRowData[];
 }
 
 const MisdemeanoursTable: React.FC<MisdemeanoursTableProps> = ({

@@ -1,12 +1,16 @@
 import { useContext, useMemo } from "react";
 import { MisdemeanoursContext } from "../../App";
 import MisdemeanoursTable from "../MisdemeanoursTable/MisdemeanoursTable";
-import { MISDEMEANOURS_MAP } from "../../types/misdemeanours.types";
+import { MISDEMEANOURS_TEXT_WITH_EMOJI_MAP } from "../../types/misdemeanours.types";
+import {
+  MisdeameanoursRowData,
+  MisdemeanourTableFilterOption,
+} from "../MisdemeanoursTable/MisdemeanoursTable.types";
 
 const MisdemeanourPage: React.FC = () => {
   const { data, isFetching, errorMessage } = useContext(MisdemeanoursContext);
 
-  const misdemeanourValues = useMemo(
+  const misdemeanourValues: MisdeameanoursRowData[] | undefined = useMemo(
     () =>
       data?.misdemeanours.map((misdemeanourObj) => {
         const { misdemeanour } = misdemeanourObj;
@@ -14,7 +18,9 @@ const MisdemeanourPage: React.FC = () => {
         return {
           ...misdemeanourObj,
           misdemeanour: {
-            text: MISDEMEANOURS_MAP.get(misdemeanour) ?? misdemeanour,
+            text:
+              MISDEMEANOURS_TEXT_WITH_EMOJI_MAP.get(misdemeanour) ??
+              misdemeanour,
             value: misdemeanour,
           },
         };
@@ -22,12 +28,12 @@ const MisdemeanourPage: React.FC = () => {
     [data]
   );
 
-  const misdemeanourFilters = useMemo(
+  const misdemeanourFilters: MisdemeanourTableFilterOption[] = useMemo(
     () => [
       ...new Map(
         misdemeanourValues?.map(({ misdemeanour }) => [
           misdemeanour.value,
-          { ...misdemeanour, text: misdemeanour.text.slice(0, -2) },
+          { ...misdemeanour, text: misdemeanour.text },
         ])
       ).values(),
     ],

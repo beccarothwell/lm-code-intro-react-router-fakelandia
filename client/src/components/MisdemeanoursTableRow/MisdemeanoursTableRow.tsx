@@ -29,19 +29,19 @@ const MisdeameanoursTableRow: React.FC<MisdeameanoursRowProps> = ({
     >
       <picture>
         <source
-          media="(max-width: 399.98px)"
+          media="(max-width: 24.999rem)"
           srcSet={`${punishmentIdea}/400/200`}
         />
         <source
-          media="(max-width: 599.98px)"
+          media="(max-width: 37.499rem)"
           srcSet={`${punishmentIdea}/600/200`}
         />
         <source
-          media="(max-width: 799.98px)"
+          media="(max-width: 49.999rem)"
           srcSet={`${punishmentIdea}/300/200`}
         />
         <source
-          media="(min-width: 800px)"
+          media="(min-width: 50rem)"
           srcSet={`${punishmentIdea}/250/150`}
         />
         <img

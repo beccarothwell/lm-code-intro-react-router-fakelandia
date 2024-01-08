@@ -1,7 +1,10 @@
 import { useContext, useMemo } from "react";
 import { MisdemeanoursContext } from "../../App";
 import MisdemeanoursTable from "../MisdemeanoursTable/MisdemeanoursTable";
-import { MISDEMEANOURS_TEXT_WITH_EMOJI_MAP } from "../../types/misdemeanours.types";
+import {
+  MISDEMEANOURS_MAP,
+  MISDEMEANOURS_TEXT_WITH_EMOJI_MAP,
+} from "../../types/misdemeanours.types";
 import {
   MisdeameanoursRowData,
   MisdemeanourTableFilterOption,
@@ -33,7 +36,11 @@ const MisdemeanourPage: React.FC = () => {
       ...new Map(
         misdemeanourValues?.map(({ misdemeanour }) => [
           misdemeanour.value,
-          { ...misdemeanour, text: misdemeanour.text },
+          {
+            ...misdemeanour,
+            text:
+              MISDEMEANOURS_MAP.get(misdemeanour.value) ?? misdemeanour.value,
+          },
         ])
       ).values(),
     ],

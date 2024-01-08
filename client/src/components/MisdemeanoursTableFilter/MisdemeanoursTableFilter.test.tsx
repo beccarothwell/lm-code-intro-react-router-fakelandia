@@ -1,6 +1,10 @@
 import { screen, render } from "@testing-library/react";
 import MisdemeanoursTableFilter from "./MisdemeanoursTableFilter";
 import userEvent from "@testing-library/user-event";
+import {
+  MisdemeanourKind,
+  MisdemeanourKindText,
+} from "../../types/misdemeanours.types";
 
 test("Given the required props, When the component renders, Then a select should be present inside a label", () => {
   const props = {
@@ -76,12 +80,12 @@ test("Given the required props, When the component is rendered, Then the provide
     placeholder: "placeholder",
     options: [
       {
-        value: "a",
-        text: "A",
+        value: "a" as MisdemeanourKind,
+        text: "A" as MisdemeanourKindText,
       },
       {
-        value: "b",
-        text: "B",
+        value: "b" as MisdemeanourKind,
+        text: "B" as MisdemeanourKindText,
       },
     ],
     onChange: () => {},
@@ -99,7 +103,7 @@ test("Given the required props, When the component is rendered, Then the provide
   expect(someOptionB).toBeInTheDocument();
 });
 
-test("Given the required props, When the component is rendered, Then the provided options should be present", () => {
+test("Given a placeholder prop, When the component is rendered, Then the default placeholder option text should not be present, the provided placeholder text should be present, and the option should be hidden and disabled", () => {
   const props = {
     label: "Label",
     name: "name",
@@ -132,12 +136,12 @@ test("Given the component is rendered, When the user selects an option, Then the
     id: "",
     options: [
       {
-        value: "a",
-        text: "A",
+        value: "a" as MisdemeanourKind,
+        text: "A" as MisdemeanourKindText,
       },
       {
-        value: "b",
-        text: "B",
+        value: "b" as MisdemeanourKind,
+        text: "B" as MisdemeanourKindText,
       },
     ],
     value: "",

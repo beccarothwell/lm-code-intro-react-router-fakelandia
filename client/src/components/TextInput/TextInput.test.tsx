@@ -161,7 +161,7 @@ test("Given a className prop, When the component renders, Then className should 
   expect(container.firstChild).toHaveClass("test-classname");
 });
 
-test("Given the required props, When the component is rendered and there is an error, Then the validate function should be called and the error message should be present", async () => {
+test("Given the required props, When the component is rendered and there is an error, Then the error message should be present", async () => {
   const props: TextInputProps = {
     label: "",
     name: "",
@@ -180,7 +180,7 @@ test("Given the required props, When the component is rendered and there is an e
   expect(errorMessage).toBeInTheDocument();
 });
 
-test("Given the required props, When the component is rendered and there are multiple errors, Then the validate function should be called and all the error messages should be present", async () => {
+test("Given the required props, When the component is rendered and there are multiple errors, Then all the error messages should be present", async () => {
   const props: TextInputProps = {
     label: "",
     name: "",

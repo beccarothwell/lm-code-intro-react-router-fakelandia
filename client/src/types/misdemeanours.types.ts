@@ -17,26 +17,20 @@ export type MisdemeanourKindText = (typeof MISDEMEANOURS_TEXT)[number];
 export const MISDEMEANOURS_EMOJIS = ["🤪", "🥗", "🗣", "😈"] as const;
 export type MisdemeanourKindEmoji = (typeof MISDEMEANOURS_EMOJIS)[number];
 
-export type MisdemeanourKindTextEmoji =
-  `${MisdemeanourKindText} ${MisdemeanourKindEmoji}`;
-
-export const MISDEMEANOURS_MAP = new Map<
+export const MISDEMEANOURS_TEXT_MAP = new Map<
   MisdemeanourKind,
   MisdemeanourKindText
 >();
 MISDEMEANOURS.forEach((key, i) =>
-  MISDEMEANOURS_MAP.set(key, MISDEMEANOURS_TEXT[i])
+  MISDEMEANOURS_TEXT_MAP.set(key, MISDEMEANOURS_TEXT[i])
 );
 
-export const MISDEMEANOURS_TEXT_WITH_EMOJI_MAP = new Map<
+export const MISDEMEANOURS_EMOJI_MAP = new Map<
   MisdemeanourKind,
-  MisdemeanourKindTextEmoji
+  MisdemeanourKindEmoji
 >();
 MISDEMEANOURS.forEach((key, i) =>
-  MISDEMEANOURS_TEXT_WITH_EMOJI_MAP.set(
-    key,
-    `${MISDEMEANOURS_TEXT[i]} ${MISDEMEANOURS_EMOJIS[i]}`
-  )
+  MISDEMEANOURS_EMOJI_MAP.set(key, MISDEMEANOURS_EMOJIS[i])
 );
 
 export const JUST_TALK = "just-talk";

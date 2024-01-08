@@ -14,7 +14,7 @@ export interface ReasonForContactOption {
 
 export interface ConfessionFormData {
   subject: string;
-  reasonForContact: ReasonForContact | "";
+  reason: ReasonForContact | "";
   details: string;
 }
 

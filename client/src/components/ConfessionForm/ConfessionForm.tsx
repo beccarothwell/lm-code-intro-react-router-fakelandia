@@ -19,25 +19,25 @@ import validateDetails from "../../validation/validate_details";
 
 const DEFAULT_INPUT_DATA: ConfessionFormData = {
   subject: "",
-  reasonForContact: "",
+  reason: "",
   details: "",
 };
 
 const DEFAULT_VALIDATION_ERRORS: ConfessionValidationErrors = {
   subject: [],
-  reasonForContact: [],
+  reason: [],
   details: [],
 };
 
 const DEFAULT_INPUT_TOUCHED: ConfessionInputTouched = {
   subject: false,
-  reasonForContact: false,
+  reason: false,
   details: false,
 };
 
 const confessionValidationFunctions: ConfessionValidationFunctions = {
   subject: validateSubject,
-  reasonForContact: validateReason,
+  reason: validateReason,
   details: validateDetails,
 };
 
@@ -51,7 +51,11 @@ const reasonForContactOptions: ReasonForContactOption[] = [
   { value: JUST_TALK, text: JUST_TALK_TEXT },
 ];
 
-const ConfessionForm: React.FC = () => {
+interface ConfessionFormProps {
+  submitData: (data: ConfessionFormData) => void;
+}
+
+const ConfessionForm: React.FC<ConfessionFormProps> = ({ submitData }) => {
   const [inputData, setInputData] =
     useState<ConfessionFormData>(DEFAULT_INPUT_DATA);
 
@@ -128,10 +132,11 @@ const ConfessionForm: React.FC = () => {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (validationErrors) {
+    if (Object.values(validationErrors).flat(2).length !== 0) {
       console.log(validationErrors);
     } else {
       console.log(inputData);
+      submitData(inputData);
     }
   }
 
@@ -149,14 +154,14 @@ const ConfessionForm: React.FC = () => {
       />
       <SelectInput
         label={"Reason for contact: "}
-        name={"reasonForContact"}
-        id={"reasonForContact"}
-        value={inputData.reasonForContact}
+        name={"reason"}
+        id={"reason"}
+        value={inputData.reason}
         placeholder={"Select"}
         defaultValue=""
         onChange={handleChange}
         options={reasonForContactOptions}
-        validationErrors={validationErrors.reasonForContact}
+        validationErrors={validationErrors.reason}
         onBlur={handleBlur}
       />
       <TextInput

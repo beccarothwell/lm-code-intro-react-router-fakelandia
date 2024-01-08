@@ -15,30 +15,30 @@ import {
 } from "./ConfessionForm.types";
 import validateSubject from "../../validation/validate_subject";
 import validateReason from "../../validation/validate_reason";
-import validateMessage from "../../validation/validate_message";
+import validateDetails from "../../validation/validate_details";
 
 const DEFAULT_INPUT_DATA: ConfessionFormData = {
   subject: "",
   reasonForContact: "",
-  message: "",
+  details: "",
 };
 
 const DEFAULT_VALIDATION_ERRORS: ConfessionValidationErrors = {
   subject: [],
   reasonForContact: [],
-  message: [],
+  details: [],
 };
 
 const DEFAULT_INPUT_TOUCHED: ConfessionInputTouched = {
   subject: false,
   reasonForContact: false,
-  message: false,
+  details: false,
 };
 
 const confessionValidationFunctions: ConfessionValidationFunctions = {
   subject: validateSubject,
   reasonForContact: validateReason,
-  message: validateMessage,
+  details: validateDetails,
 };
 
 const misdemeanourOptions: ReasonForContactOption[] = Array.from(
@@ -136,7 +136,7 @@ const ConfessionForm: React.FC = () => {
   }
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form name="Confession" onSubmit={(e) => handleSubmit(e)}>
       <TextInput
         label={"Subject: "}
         name={"subject"}
@@ -161,12 +161,12 @@ const ConfessionForm: React.FC = () => {
       />
       <TextInput
         label={""}
-        name={"message"}
+        name={"details"}
         type="textarea"
-        id={"message"}
-        value={inputData.message}
+        id={"details"}
+        value={inputData.details}
         onChange={handleChange}
-        validationErrors={validationErrors.message}
+        validationErrors={validationErrors.details}
         onBlur={handleBlur}
       />
       <button className={"btn"} type="submit" disabled={disableSubmit} id={""}>

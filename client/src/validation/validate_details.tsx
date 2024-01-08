@@ -1,4 +1,4 @@
-function validateMessage(value: string) {
+function validateDetails(value: string) {
   const errorMessages: string[] = [];
 
   if (value.length === 0) {
@@ -11,4 +11,4 @@ function validateMessage(value: string) {
   return errorMessages;
 }
 
-export default validateMessage;
+export default validateDetails;

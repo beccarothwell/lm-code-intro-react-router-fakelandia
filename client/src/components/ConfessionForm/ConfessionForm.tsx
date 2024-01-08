@@ -2,7 +2,7 @@ import { FormEvent, useMemo, useState } from "react";
 import {
   JUST_TALK,
   JUST_TALK_TEXT,
-  MISDEMEANOURS_MAP,
+  MISDEMEANOURS_TEXT_MAP,
 } from "../../types/misdemeanours.types";
 import SelectInput from "../SelectInput/SelectInput";
 import { TextInput } from "../TextInput/TextInput";
@@ -42,7 +42,7 @@ const confessionValidationFunctions: ConfessionValidationFunctions = {
 };
 
 const misdemeanourOptions: ReasonForContactOption[] = Array.from(
-  MISDEMEANOURS_MAP,
+  MISDEMEANOURS_TEXT_MAP,
   ([value, text]) => ({ value, text })
 );
 

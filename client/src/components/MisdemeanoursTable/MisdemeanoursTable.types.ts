@@ -1,7 +1,6 @@
 import {
   MisdemeanourKind,
   MisdemeanourKindText,
-  MisdemeanourKindTextEmoji,
 } from "../../types/misdemeanours.types";
 
 export interface MisdemeanourTableFilterOption {
@@ -12,8 +11,5 @@ export interface MisdemeanourTableFilterOption {
 export interface MisdeameanoursRowData {
   citizenId: number;
   date: string;
-  misdemeanour: {
-    value: MisdemeanourKind;
-    text: MisdemeanourKindTextEmoji | MisdemeanourKind;
-  };
+  misdemeanour: MisdemeanourTableFilterOption;
 }

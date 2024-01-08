@@ -4,6 +4,7 @@ import MisdemeanoursTableRow from "../MisdemeanoursTableRow/MisdemeanoursTableRo
 import { useMemo, useState } from "react";
 import { MisdeameanoursColumnHead } from "../MisdemeanoursTableHeader/MisdemeanoursTableHeader";
 import { MisdeameanoursRowData } from "./MisdemeanoursTable.types";
+import { MISDEMEANOURS_EMOJI_MAP } from "../../types/misdemeanours.types";
 
 interface MisdemeanoursTableProps {
   headerData: MisdeameanoursColumnHead[];
@@ -45,7 +46,7 @@ const MisdemeanoursTable: React.FC<MisdemeanoursTableProps> = ({
               key={i}
               citizenId={citizenId}
               date={date}
-              misdemeanour={text}
+              misdemeanour={`${text} ${MISDEMEANOURS_EMOJI_MAP.get(value)}`}
               punishmentIdea={`https://picsum.photos/seed/${punishmentIdeaSeed}`}
             />
           );

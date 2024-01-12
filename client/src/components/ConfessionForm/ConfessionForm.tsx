@@ -1,56 +1,19 @@
 import { FormEvent, useMemo, useState } from "react";
-import {
-  JUST_TALK,
-  JUST_TALK_TEXT,
-  MISDEMEANOURS_TEXT_MAP,
-} from "../../types/misdemeanours.types";
 import SelectInput from "../SelectInput/SelectInput";
 import { TextInput } from "../TextInput/TextInput";
 import {
   ConfessionFormData,
   ConfessionInputTouched,
   ConfessionValidationErrors,
-  ConfessionValidationFunctions,
-  ReasonForContactOption,
   ConfessionResponse,
 } from "./ConfessionForm.types";
-import validateSubject from "../../validation/validate_subject";
-import validateReason from "../../validation/validate_reason";
-import validateDetails from "../../validation/validate_details";
-
-const DEFAULT_INPUT_DATA: ConfessionFormData = {
-  subject: "",
-  reason: "",
-  details: "",
-};
-
-const DEFAULT_VALIDATION_ERRORS: ConfessionValidationErrors = {
-  subject: [],
-  reason: [],
-  details: [],
-};
-
-const DEFAULT_INPUT_TOUCHED: ConfessionInputTouched = {
-  subject: false,
-  reason: false,
-  details: false,
-};
-
-const confessionValidationFunctions: ConfessionValidationFunctions = {
-  subject: validateSubject,
-  reason: validateReason,
-  details: validateDetails,
-};
-
-const misdemeanourOptions: ReasonForContactOption[] = Array.from(
-  MISDEMEANOURS_TEXT_MAP,
-  ([value, text]) => ({ value, text })
-);
-
-const reasonForContactOptions: ReasonForContactOption[] = [
-  ...misdemeanourOptions,
-  { value: JUST_TALK, text: JUST_TALK_TEXT },
-];
+import {
+  DEFAULT_INPUT_DATA,
+  DEFAULT_VALIDATION_ERRORS,
+  DEFAULT_INPUT_TOUCHED,
+  confessionValidationFunctions,
+  reasonForContactOptions,
+} from "./ConfessionForm_constants";
 
 interface ConfessionFormProps {
   submitData: (data: ConfessionFormData) => void;

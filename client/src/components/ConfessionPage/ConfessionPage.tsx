@@ -1,6 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import ConfessionForm from "../ConfessionForm/ConfessionForm";
-import { ConfessionFormData } from "../ConfessionForm/ConfessionForm.types";
+import {
+  ConfessionFormData,
+  ConfessionResponse,
+} from "../ConfessionForm/ConfessionForm.types";
 import { isError } from "../../helpers/is_error";
 import { MisdemeanoursContext } from "../../context/MisdemeanoursContext";
 import {
@@ -8,22 +11,20 @@ import {
   MisdemeanourKind,
 } from "../../types/misdemeanours.types";
 
-interface ConfessionResponse {
-  success: boolean;
-  justTalked: boolean;
-  message: string;
-}
-
 const ConfessionPage: React.FC = () => {
   const { updateMisdemeanours } = useContext(MisdemeanoursContext);
-
-  const [submittedMisdemeanour, setSubmittedMisdemeanour] = useState<
-    Misdemeanour | undefined
-  >();
   const [submissionResponse, setSubmissionResponse] =
     useState<ConfessionResponse | null>(null);
 
-  const postData = async (data: ConfessionFormData) => {
+  const constructMisdemeanour = (reason: MisdemeanourKind): Misdemeanour => {
+    return {
+      citizenId: Math.floor(1 + Math.random() * 37 * (Math.random() * 967)),
+      misdemeanour: reason,
+      date: new Date().toLocaleDateString(),
+    };
+  };
+
+  const submitData = async (data: ConfessionFormData) => {
     try {
       const response = await fetch("http://localhost:8080/api/confess/", {
         method: "POST",
@@ -32,37 +33,20 @@ const ConfessionPage: React.FC = () => {
         },
         body: JSON.stringify(data),
       });
+      const json = await response.json();
+      setSubmissionResponse(json);
       if (response.ok) {
-        const json = await response.json();
-        setSubmissionResponse(json);
+        if (!json.justTalked) {
+          if (data.reason !== "just-talk" && data.reason !== "") {
+            const misdemeanour = constructMisdemeanour(data.reason);
+            updateMisdemeanours([misdemeanour]);
+          }
+        }
       }
     } catch (e: unknown) {
       console.log(isError(e) ? e.message : "Unknown error!");
     }
   };
-
-  const constructMisdemeanour = (reason: MisdemeanourKind): Misdemeanour => {
-    const date = new Date().toLocaleDateString();
-    return { citizenId: 0, misdemeanour: reason, date: date };
-  };
-
-  const submitData = (data: ConfessionFormData) => {
-    if (data.reason !== "just-talk" && data.reason !== "") {
-      const misdemeanour = constructMisdemeanour(data.reason);
-      setSubmittedMisdemeanour(misdemeanour);
-    }
-    postData(data);
-  };
-
-  useEffect(() => {
-    if (
-      submissionResponse?.success &&
-      !submissionResponse.justTalked &&
-      submittedMisdemeanour
-    ) {
-      updateMisdemeanours([submittedMisdemeanour]);
-    }
-  }, [submissionResponse, submittedMisdemeanour, updateMisdemeanours]);
 
   return (
     <>
@@ -74,7 +58,10 @@ const ConfessionPage: React.FC = () => {
         However, if you're just having a hard day and need to vent then you're
         welcome to contact us here too. Up to you!
       </p>
-      <ConfessionForm submitData={submitData} />
+      <ConfessionForm
+        submitData={submitData}
+        submissionResponse={submissionResponse}
+      />
     </>
   );
 };

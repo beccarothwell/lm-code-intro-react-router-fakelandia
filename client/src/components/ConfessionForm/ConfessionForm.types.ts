@@ -30,9 +30,8 @@ export type ConfessionInputTouched = {
   [Property in keyof ConfessionFormData]: boolean;
 };
 
-export type ConfessionFormChangeHandler = <
-  TKey extends keyof ConfessionFormData
->(
-  value: ConfessionFormData[TKey],
-  name: TKey
-) => void;
+export interface ConfessionResponse {
+  success: boolean;
+  justTalked: boolean;
+  message: string;
+}

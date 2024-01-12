@@ -12,6 +12,7 @@ import {
   ConfessionValidationErrors,
   ConfessionValidationFunctions,
   ReasonForContactOption,
+  ConfessionResponse,
 } from "./ConfessionForm.types";
 import validateSubject from "../../validation/validate_subject";
 import validateReason from "../../validation/validate_reason";
@@ -53,9 +54,13 @@ const reasonForContactOptions: ReasonForContactOption[] = [
 
 interface ConfessionFormProps {
   submitData: (data: ConfessionFormData) => void;
+  submissionResponse: ConfessionResponse | null;
 }
 
-const ConfessionForm: React.FC<ConfessionFormProps> = ({ submitData }) => {
+const ConfessionForm: React.FC<ConfessionFormProps> = ({
+  submitData,
+  submissionResponse,
+}) => {
   const [inputData, setInputData] =
     useState<ConfessionFormData>(DEFAULT_INPUT_DATA);
 
@@ -121,6 +126,12 @@ const ConfessionForm: React.FC<ConfessionFormProps> = ({ submitData }) => {
     }
   }
 
+  function resetForm() {
+    setInputData(DEFAULT_INPUT_DATA);
+    setTouched(DEFAULT_INPUT_TOUCHED);
+    setValidationErrors(DEFAULT_VALIDATION_ERRORS);
+  }
+
   const disableSubmit = useMemo(() => {
     const errors = Object.values(validationErrors).flat(2);
     const untouched = Object.values(touched).find((value) => value === false);
@@ -132,10 +143,9 @@ const ConfessionForm: React.FC<ConfessionFormProps> = ({ submitData }) => {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (Object.values(validationErrors).flat(2).length !== 0) {
-      console.log(validationErrors);
-    } else {
+    if (Object.values(validationErrors).flat(2).length === 0) {
       submitData(inputData);
+      resetForm();
     }
   }
 
@@ -176,6 +186,7 @@ const ConfessionForm: React.FC<ConfessionFormProps> = ({ submitData }) => {
       <button className={"btn"} type="submit" disabled={disableSubmit} id={""}>
         Confess
       </button>
+      <span>{!submissionResponse?.success && submissionResponse?.message}</span>
     </form>
   );
 };

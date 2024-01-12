@@ -1,5 +1,9 @@
 import { useContext, useMemo } from "react";
-import { MisdemeanoursContext } from "../../App";
+import {
+  MisdemeanoursContext,
+  IsLoadingContext,
+  ErrorMessageContext,
+} from "../../context/MisdemeanoursContext";
 import MisdemeanoursTable from "../MisdemeanoursTable/MisdemeanoursTable";
 import { MISDEMEANOURS_TEXT_MAP } from "../../types/misdemeanours.types";
 import {
@@ -8,11 +12,13 @@ import {
 } from "../MisdemeanoursTable/MisdemeanoursTable.types";
 
 const MisdemeanourPage: React.FC = () => {
-  const { data, isFetching, errorMessage } = useContext(MisdemeanoursContext);
+  const { misdemeanours } = useContext(MisdemeanoursContext);
+  const isLoading = useContext(IsLoadingContext);
+  const errorMessage = useContext(ErrorMessageContext);
 
   const misdemeanourValues: MisdeameanoursRowData[] | undefined = useMemo(
     () =>
-      data?.misdemeanours.map((misdemeanourObj) => {
+      misdemeanours.map((misdemeanourObj) => {
         const { misdemeanour } = misdemeanourObj;
 
         return {
@@ -23,13 +29,13 @@ const MisdemeanourPage: React.FC = () => {
           },
         };
       }),
-    [data]
+    [misdemeanours]
   );
 
   const misdemeanourFilters: MisdemeanourTableFilterOption[] = useMemo(
     () => [
       ...new Map(
-        misdemeanourValues?.map(({ misdemeanour }) => [
+        misdemeanourValues.map(({ misdemeanour }) => [
           misdemeanour.value,
           {
             ...misdemeanour,
@@ -56,13 +62,15 @@ const MisdemeanourPage: React.FC = () => {
 
   return (
     <>
-      {isFetching && "...Loading"}
-      {!isFetching && misdemeanourValues && misdemeanourFilters && (
-        <MisdemeanoursTable
-          bodyData={misdemeanourValues}
-          headerData={misdemeanourColumnHeads}
-        />
-      )}
+      {isLoading && "...Loading"}
+      {!isLoading &&
+        misdemeanourValues.length > 0 &&
+        misdemeanourFilters.length > 0 && (
+          <MisdemeanoursTable
+            bodyData={misdemeanourValues}
+            headerData={misdemeanourColumnHeads}
+          />
+        )}
       {errorMessage && errorMessage}
     </>
   );

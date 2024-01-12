@@ -135,7 +135,6 @@ const ConfessionForm: React.FC<ConfessionFormProps> = ({ submitData }) => {
     if (Object.values(validationErrors).flat(2).length !== 0) {
       console.log(validationErrors);
     } else {
-      console.log(inputData);
       submitData(inputData);
     }
   }

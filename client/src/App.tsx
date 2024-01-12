@@ -1,42 +1,51 @@
 import "./App.scss";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./components/Router/Router";
-import { useFetch, FetchReturn } from "./hooks/use_fetch/use_fetch";
+import { useFetch } from "./hooks/use_fetch/use_fetch";
+import { useCallback, useEffect, useState } from "react";
+import {
+  ErrorMessageContext,
+  IsLoadingContext,
+  MisdemeanoursContext,
+} from "./context/MisdemeanoursContext";
 import { Misdemeanour } from "./types/misdemeanours.types";
-import { createContext, useEffect, useState } from "react";
 
 interface MisdemeanourData {
   misdemeanours: Misdemeanour[];
 }
 
-export const MISDEMEANOURS_RESPONSE_DEFAULT = {
-  isFetching: true,
-  data: undefined,
-  errorMessage: undefined,
-};
-
-export const MisdemeanoursContext = createContext<
-  FetchReturn<MisdemeanourData>
->(MISDEMEANOURS_RESPONSE_DEFAULT);
-
 function App() {
-  const [generationNumber, setGenerationNumber] = useState<number>(1);
+  const [misdemeanours, setMisdemeanours] = useState<Misdemeanour[]>([]);
+
+  const { isFetching, errorMessage, data } = useFetch<MisdemeanourData>(
+    `http://localhost:8080/api/misdemeanours/10`
+  );
 
   useEffect(() => {
-    setGenerationNumber(Math.floor(Math.random() * (10 - 1) + 1));
-  }, []);
+    if (data) {
+      setMisdemeanours([...data.misdemeanours]);
+    }
+  }, [data]);
 
-  const misdemeanoursResponse = useFetch<MisdemeanourData>(
-    `http://localhost:8080/api/misdemeanours/${generationNumber}`
-  );
+  const updateMisdemeanours = useCallback((misdemeanours: Misdemeanour[]) => {
+    setMisdemeanours((currentState) => {
+      return [...currentState, ...misdemeanours];
+    });
+  }, []);
 
   return (
     <>
-      <MisdemeanoursContext.Provider value={misdemeanoursResponse}>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
-      </MisdemeanoursContext.Provider>
+      <IsLoadingContext.Provider value={isFetching}>
+        <ErrorMessageContext.Provider value={errorMessage}>
+          <MisdemeanoursContext.Provider
+            value={{ misdemeanours: misdemeanours, updateMisdemeanours }}
+          >
+            <BrowserRouter>
+              <Router />
+            </BrowserRouter>
+          </MisdemeanoursContext.Provider>
+        </ErrorMessageContext.Provider>
+      </IsLoadingContext.Provider>
     </>
   );
 }

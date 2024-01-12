@@ -1,69 +1,68 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ConfessionForm from "../ConfessionForm/ConfessionForm";
 import { ConfessionFormData } from "../ConfessionForm/ConfessionForm.types";
-import { useFetch } from "../../hooks/use_fetch/use_fetch";
+import { isError } from "../../helpers/is_error";
+import { MisdemeanoursContext } from "../../context/MisdemeanoursContext";
+import {
+  Misdemeanour,
+  MisdemeanourKind,
+} from "../../types/misdemeanours.types";
 
-const DEFAULT_INPUT_DATA: ConfessionFormData = {
-  subject: "",
-  reason: "",
-  details: "",
-};
+interface ConfessionResponse {
+  success: boolean;
+  justTalked: boolean;
+  message: string;
+}
 
 const ConfessionPage: React.FC = () => {
-  const [submissionData, setSubmissionData] =
-    useState<ConfessionFormData>(DEFAULT_INPUT_DATA);
+  const { updateMisdemeanours } = useContext(MisdemeanoursContext);
 
-  const submitData = (data: ConfessionFormData) => {
-    setSubmissionData(data);
+  const [submittedMisdemeanour, setSubmittedMisdemeanour] = useState<
+    Misdemeanour | undefined
+  >();
+  const [submissionResponse, setSubmissionResponse] =
+    useState<ConfessionResponse | null>(null);
+
+  const postData = async (data: ConfessionFormData) => {
+    try {
+      const response = await fetch("http://localhost:8080/api/confess/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const json = await response.json();
+        setSubmissionResponse(json);
+      }
+    } catch (e: unknown) {
+      console.log(isError(e) ? e.message : "Unknown error!");
+    }
   };
 
-  /*const submission = useFetch(
-    "http://localhost:8080/api/confess/",
-    "POST",
-    submissionData
-  );
-  console.log(submission);*/
+  const constructMisdemeanour = (reason: MisdemeanourKind): Misdemeanour => {
+    const date = new Date().toLocaleDateString();
+    return { citizenId: 0, misdemeanour: reason, date: date };
+  };
 
-  /*useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/confess/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(submissionData),
-          //signal: abortController.signal,
-        });
-        //setIsFetching(false);
-        if (!response.ok) {
-          if (response.status === 404) {
-            //setErrorMessage(`${response.status} Not Found`);
-          } else if (response.status === 418) {
-            //setErrorMessage(`${response.status} I'm a tea pot, silly`);
-          } else if (response.status === 500) {
-            //setErrorMessage(
-            //   `${response.status} Oops... something went wrong, try again 🤕`
-            // );
-          } else {
-            //setErrorMessage(`${response.status} ${response.statusText}`);
-          }
-        }
-        if (response.status === 200 || response.status === 201) {
-          const json = await response.json();
-          //setData(json);
-          console.log(json);
-        }
-      } catch (e: unknown) {
-        //setIsFetching(false);
-        console
-          .log
-          //  isError(e) && e.name !== "AbortError" ? e.message : "Unknown error!"
-          ();
-      }
-    };
-    fetchData();
-  }, [submissionData]);*/
+  const submitData = (data: ConfessionFormData) => {
+    if (data.reason !== "just-talk" && data.reason !== "") {
+      const misdemeanour = constructMisdemeanour(data.reason);
+      setSubmittedMisdemeanour(misdemeanour);
+    }
+    postData(data);
+  };
+
+  useEffect(() => {
+    if (
+      submissionResponse?.success &&
+      !submissionResponse.justTalked &&
+      submittedMisdemeanour
+    ) {
+      updateMisdemeanours([submittedMisdemeanour]);
+    }
+  }, [submissionResponse, submittedMisdemeanour, updateMisdemeanours]);
 
   return (
     <>
